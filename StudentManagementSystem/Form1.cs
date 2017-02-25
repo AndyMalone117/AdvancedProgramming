@@ -37,50 +37,25 @@ namespace StudentManagementSystem
 
             string status = log.CheckUser(user, pass);
 
-
-
-                if(status == "no")
-                {
-                    MessageBox.Show("invalid login");
-                }
-                else
-                {
-                
+            if (status == "no")
+            {
+                MessageBox.Show("invalid login");
+            }
+            else
+            {
                 StudentForm home = new StudentForm();
                 home.Show();
 
-                
-            }
+                txtUser.Clear();
+                txtPass.Clear();
 
+
+            }
         }
 
-        //DAO dao = new DAO();
-        //SqlDataAdapter da;
-        //DataTable dt;
-        //BindingSource bs;
-
-        //public void UpdateGrid()
-        //{
-        //    dt = new DataTable();
-        //    bs = new BindingSource();
-        //    da = new SqlDataAdapter();
-
-        //    SqlCommand cmd = dao.OpenCon().CreateCommand();
-        //    cmd.CommandText = "uspGetStudent";
-        //    cmd.CommandType = CommandType.StoredProcedure;
-        //    da.SelectCommand = cmd;
-        //    da.Fill(dt);
-        //    bs.DataSource = dt;
-        //    dgv.DataSource = bs;
-
-        //    MessageBox.Show("Data Added", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-
-
-        private void newStudentToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddStudent addStu = new AddStudent();
-            addStu.Show();
-
+            this.Close();
         }
     }
 }

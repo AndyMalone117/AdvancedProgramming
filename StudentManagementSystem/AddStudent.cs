@@ -29,56 +29,72 @@ namespace StudentManagementSystem
 
         }
 
+        Update update = new Update();
+        XmlSerializer serialiser;
+        XmlWriter xmlWriter;
+        string filePath = string.Empty;
+        SaveFileDialog sfd = new SaveFileDialog();
+
         private void btnAddToDb_Click(object sender, EventArgs e)
         {
-           
-            //int sNum = int.Parse(txtNum.Text);
-            string fname = txtFn.Text;
-            string lname = txtSur.Text;
-            string email = txtEmail.Text;
-            string phone =txtPhone.Text;
-            string address1 = txtAddress1.Text;
-            string address2 = txtAddress2.Text;
-            string city = txtCity.Text;
-            string county = cmbCounty.SelectedItem.ToString();
-            string level = "Postgrad";
-            if (rdoPost.Checked)
+            if (txtFn.Text == string.Empty || txtSur.Text == string.Empty
+                || txtEmail.Text == string.Empty || txtPhone.Text == string.Empty
+                || txtAddress1.Text == string.Empty || txtAddress2.Text == string.Empty
+                || cmbCourse.Text == string.Empty || cmbCounty.Text == string.Empty)
             {
-                level = "Postgrad";
+                MessageBox.Show("Please fill in blank text boxes");
             }
-            else if (rdoUnder.Checked)
+            else
             {
-                level = "Undergrad";
+
+
+                //int sNum = int.Parse(txtNum.Text);
+                string fname = txtFn.Text;
+                string lname = txtSur.Text;
+                string email = txtEmail.Text;
+                string phone = txtPhone.Text;
+                string address1 = txtAddress1.Text;
+                string address2 = txtAddress2.Text;
+                string city = txtCity.Text;
+                string county = cmbCounty.SelectedItem.ToString();
+                string level = "Postgrad";
+                if (rdoPost.Checked)
+                {
+                    level = "Postgrad";
+                }
+                else if (rdoUnder.Checked)
+                {
+                    level = "Undergrad";
+                }
+
+                string course = cmbCourse.SelectedItem.ToString();
+                Student ans = new Student(fname, lname, email, phone, address1, address2, city, county, level, course);
+
+
+
+                //AddNewCustomer
+                if (ans.Validate())
+                {
+                    StudentForm stuform = new StudentForm();
+                    ans.addNewStudentToDB();
+                    MessageBox.Show("Data Added", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    txtFn.Clear();
+                    txtSur.Clear();
+                    txtEmail.Clear();
+                    txtPhone.Clear();
+                    txtAddress1.Clear();
+                    txtAddress2.Clear();
+                    txtCity.Clear();
+                    this.Close();
+                    stuform.Show();
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Invalid details, try again!");
+                }
             }
-
-            string course = cmbCourse.SelectedItem.ToString();
-            Student ans = new Student(fname, lname, email, phone, address1, address2, city, county, level, course);
-
-           
-
-            //AddNewCustomer
-
-            ans.addNewStudentToDB();
-            DAO dao = new DAO();
-            SqlCommand cmd = new SqlCommand();
-            MessageBox.Show("Data Added", "Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-
-
-
-            cmd.ExecuteNonQuery();
-            dao.CloseCon();
-
-            txtFn.Clear();
-            txtSur.Clear();
-            txtEmail.Clear();
-            txtPhone.Clear();
-            txtAddress1.Clear();
-            txtAddress2.Clear();
-            txtCity.Clear();
-
-            
-
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -93,10 +109,7 @@ namespace StudentManagementSystem
 
         private void btnSaveXML_Click(object sender, EventArgs e)
         {
-            XmlSerializer serialiser;
-            XmlWriter xmlWriter;
-            string filePath = string.Empty;
-            SaveFileDialog sfd = new SaveFileDialog();
+
 
             //int sNum = int.Parse(txtNum.Text);
             string fname = txtFn.Text;
@@ -120,8 +133,8 @@ namespace StudentManagementSystem
             string course = cmbCourse.SelectedItem.ToString();
             Student ans = new Student(fname, lname, email, phone, address1, address2, city, county, level, course);
 
-            //if (ans.Validate())
-            //{
+            if (ans.Validate())
+            {
                 sfdFile.InitialDirectory = "C:\\";
                 sfdFile.Filter = "xml Files (*.xml)|*.xml";
 
@@ -142,20 +155,16 @@ namespace StudentManagementSystem
                     txtAddress1.Clear();
                     txtAddress2.Clear();
                     txtCity.Clear();
+                    cmbCounty.ResetText();
+                    cmbCourse.ResetText();
                     this.Close();
                 }
 
-            //}
-            //else
-            //{
-                MessageBox.Show("Invalid Details");
-            //}
-
-            //AddNewCustomer
-
-
-            
-
+            }
+            else
+            {
+                MessageBox.Show("Invalid Details, verify they are correct");
+            }
 
         }
     }

@@ -53,28 +53,39 @@ namespace BIZ
         {
         }
 
-        //public bool Validate()
-        //{
-        //    bool valid = false;
-        //    int firstNameLength = 0;
-        //    int.TryParse(ConfigurationManager.AppSettings["FirstNameLength"], out firstNameLength);
-        //    int surnameLength = 0;
-        //    int.TryParse(ConfigurationManager.AppSettings["SurnameLength"], out surnameLength);
+        public bool Validate()
+        {
+            bool valid = false;
+            int firstNameLength = 0;
+            int.TryParse(ConfigurationManager.AppSettings["FirstNameLength"], out firstNameLength);
+            int surnameLength = 0;
+            int.TryParse(ConfigurationManager.AppSettings["SurnameLength"], out surnameLength);
+            int Add1 = 0;
+            int.TryParse(ConfigurationManager.AppSettings["Add1"], out Add1);
+            int Add2 = 0;
+            int.TryParse(ConfigurationManager.AppSettings["Add2"], out Add2);
+            string City = ConfigurationManager.AppSettings["City"];
+            int County = 0;
+            int.TryParse(ConfigurationManager.AppSettings["County"], out County);
+            int Level = 0;
+            int.TryParse(ConfigurationManager.AppSettings["Level"], out Level);
+            int Course = 0;
+            int.TryParse(ConfigurationManager.AppSettings["Course"], out Course);
 
-        //    string phoneRegEx = ConfigurationManager.AppSettings["PhoneRegEx"];
-        //    string emailRegEx = ConfigurationManager.AppSettings["EmailRegEx"];
+            string phoneRegEx = ConfigurationManager.AppSettings["PhoneRegEx"];
+            string emailRegEx = ConfigurationManager.AppSettings["EmailRegEx"];
 
 
-        //    if (FirstName.Length >= firstNameLength && Surname.Length >= surnameLength)
-        //    {
-        //        if (Regex.IsMatch(Email, emailRegEx) && Regex.IsMatch(Phone, phoneRegEx))
-        //        {
-        //            valid = true;
-        //        }
-        //    }
+         
+           if (FirstName.Length >= firstNameLength && Surname.Length >= surnameLength && Address1.Length >= Add1 && Address2.Length >= Add2 && City.Length >= City.Length && Regex.IsMatch(Phone, phoneRegEx) && Regex.IsMatch(Email, emailRegEx))
+            {
+                valid = true;
+            }
+            return valid;
 
-        //    return valid;
-        //}
+        }
+
+    
 
         public void addNewStudentToDB()
         {

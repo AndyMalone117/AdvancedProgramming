@@ -16,5 +16,23 @@ namespace StudentManagementSystem
         {
             InitializeComponent();
         }
+
+        private void History_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'myStudentsDataSet.Students_Audit' table. You can move, or remove it, as needed.
+            this.students_AuditTableAdapter.Fill(this.myStudentsDataSet.Students_Audit);
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
     }
 }

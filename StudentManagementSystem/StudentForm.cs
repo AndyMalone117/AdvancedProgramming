@@ -26,6 +26,7 @@ namespace StudentManagementSystem
 
         private void newStudentToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.Hide();
             AddStudent addStu = new AddStudent();
             addStu.Show();
         }
@@ -78,6 +79,7 @@ namespace StudentManagementSystem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            this.Hide();
             AddStudent addStu = new AddStudent();
             addStu.Show();
         }
@@ -175,6 +177,33 @@ namespace StudentManagementSystem
             cmd.ExecuteScalar();
             dao.CloseCon();
             up.UpdateGridView();
+        }
+
+        private void viewDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            History history = new History();
+            history.Show();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
