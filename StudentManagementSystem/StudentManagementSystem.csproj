@@ -125,6 +125,7 @@
     <EmbeddedResource Include="AddStudent.resx">
       <DependentUpon>AddStudent.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="myStudentsDataSet.xsc">
       <DependentUpon>myStudentsDataSet.xsd</DependentUpon>
     </None>

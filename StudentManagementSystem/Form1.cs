@@ -33,7 +33,7 @@ namespace StudentManagementSystem
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string user = txtUser.Text;
-            string pass = txtPass.Text;
+            string pass = hc.PassHash(txtPass.Text);
 
             string status = log.CheckUser(user, pass);
 
@@ -48,7 +48,6 @@ namespace StudentManagementSystem
 
                 txtUser.Clear();
                 txtPass.Clear();
-
 
             }
         }
